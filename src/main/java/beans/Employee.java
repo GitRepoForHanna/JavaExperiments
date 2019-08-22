@@ -1,6 +1,6 @@
 package beans;
 
-public class Emplyee {
+public class Employee {
 
     private int age;
     private String name;
@@ -8,12 +8,15 @@ public class Emplyee {
     private int level;
     private Department department;
 
-    public Emplyee(int age, String name, String skill, int level, Department department) {
+    public Employee(int age, String name, String skill, int level, Department department) {
         this.age = age;
         this.name = name;
         this.skill = skill;
         this.level = level;
         this.department = department;
+    }
+
+    public Employee() {
     }
 
     public int getAge() {

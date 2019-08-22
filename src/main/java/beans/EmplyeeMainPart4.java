@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.function.BiFunction;
 import java.util.function.DoubleUnaryOperator;
 import java.util.function.Function;
@@ -7,7 +9,7 @@ import java.util.function.Function;
 public class EmplyeeMainPart4 {
 
     public static void main(String[] args) {
-        CalculateOerDiem machine = new CalculateOerDiem();
+        CalculatePerDiem machine = new CalculatePerDiem();
         Function<Integer, Double> curriedByFirstArgument = machine.curryFirstArgument(57.16);
         System.out.println(curriedByFirstArgument.apply(5));
         System.out.println(curriedByFirstArgument.apply(10));
@@ -15,6 +17,7 @@ public class EmplyeeMainPart4 {
         Function<Double, Double> curriedBySecondParameter = machine.currySecondArgument(10);
         System.out.println(curriedBySecondParameter.apply(56.12));
         System.out.println(curriedBySecondParameter.apply(30.12));
+
     }
 }
 
@@ -29,7 +32,7 @@ interface CurriedBiFunction <T, U, R> extends BiFunction<T, U, R>{
     }
 }
 
-class CalculateOerDiem implements CurriedBiFunction <Double, Integer, Double>{
+class CalculatePerDiem implements CurriedBiFunction <Double, Integer, Double>{
     private static Double perDiemRate = 10.15;
 
     @Override
