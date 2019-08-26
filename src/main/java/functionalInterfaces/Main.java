@@ -3,9 +3,7 @@ package functionalInterfaces;
 import beans.Department;
 import beans.Employee;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -44,15 +42,17 @@ public class Main {
         };
         initializeEmployee.accept(em1);
 
-        //Comparator
-        Employee e1 = new Employee(32, "Tom", "Java", 3, new Department("Web development"));
-        Employee e2 = new Employee(31, "Tim", "Java", 1, new Department("Web development"));
-        Employee e3 = new Employee(33, "Dan", "Java", 2, new Department("Web development"));
 
+        Employee e1 = new Employee(32, "Tom", "Java", 3, new Department("Web development"));
+        Employee e2 = new Employee(30, "Andy", "Java", 5, new Department("Web development"));
+        Employee e3 = new Employee(31, "Tim", "Java", 1, new Department("Web development"));
+        Employee e4 = new Employee(33, "Dan", "Java", 2, new Department("Web development"));
+
+        //Comparator
         Comparator <Employee> compareJavaLevels = Comparator.comparingInt(e -> e.getLevel());
 
 
-                Arrays.asList(e1,e2,e3).stream()
+                Arrays.asList(e1,e2,e3, e4).stream()
                         .collect(Collectors.toMap(Employee::getName, Employee::getLevel))
                         .entrySet()
                         .stream()
@@ -61,13 +61,48 @@ public class Main {
                         .forEach(System.out::println);
 
 
-//        Arrays.asList(e1,e2,e3).stream()
-//                .collect(Collectors.toMap(Employee::getName, Employee::getLevel))
-//                .entrySet()
-//                .stream()
-//                .sorted(Comparator.comparing(e -> e.getValue()))
-//                .collect(Collectors.mapping(e -> e.getKey()))
-//                .forEach(System.out::println);
+                Arrays.asList(e1,e2,e3, e4).stream()
+                .collect(Collectors.toList())
+                .stream()
+                .sorted(Comparator.comparing(Employee::getLevel))
+                 .forEach(e -> {
+                     System.out.println(e.getName() + " - " + e.getLevel());
+                 });
+
+        System.out.println(Arrays.asList(e1,e2,e3,e4).stream()
+                .collect(Collectors.groupingBy(Employee::getLevel, Collectors.toMap(Employee::getName, Employee::getAge))));
+
+        System.out.println(Arrays.asList(e1,e2,e3,e4).stream()
+                .collect(Collectors.groupingBy(Employee::getName, Collectors.toMap(Employee::getSkill, Employee::getLevel))));
+
+        System.out.println(Arrays.asList(e1,e2,e3,e4).stream()
+                .collect(Collectors.partitioningBy(e -> e.getLevel() > 2, Collectors.toMap(Employee::getName, Employee::getLevel))));
+
+        List<String> stringList = Arrays.asList("a1", "a2", "abc", "b2ds", "bc");
+        Map<String,Integer> map = stringList.stream()
+                .collect(Collectors.toMap(Function.identity(), String::length));
+
+        System.out.println(map);
+
+        Map<String,Integer> result = stringList.stream()
+                .collect(Collectors.toMap(Function.identity(), String::length, (item, identicalItem) -> identicalItem));
+
+        System.out.println(result);
+
+        System.out.println(stringList.stream()
+                .collect(Collectors.joining()));
+
+        System.out.println(stringList.stream()
+                .collect(Collectors.joining(", ", "Begin: ", " End")));
+
+        System.out.println(stringList.stream()
+                .collect(Collectors.counting()));
+
+        System.out.println(stringList.stream()
+                .collect(Collectors.summarizingInt(String::length)));
+
+        System.out.println(stringList.stream()
+                .collect(Collectors.groupingBy(String::length, Collectors.toSet())));
 
     }
 }
