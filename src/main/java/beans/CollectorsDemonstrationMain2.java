@@ -14,13 +14,13 @@ public class CollectorsDemonstrationMain2 {
                 .sorted(Comparator.comparing(Employee::getName))
                 .collect(Collectors.toMap(Employee::getName, Employee::getDepartment));
 
-        System.out.println(result);
-
-        String delimitedNames = employees.stream()
-                .map(Employee::getName)
-                .collect(Collectors.joining("#"));
-
-        System.out.println(delimitedNames);
+//        System.out.println(result);
+//
+//        String delimitedNames = employees.stream()
+//                .map(Employee::getName)
+//                .collect(Collectors.joining("#"));
+//
+//        System.out.println(delimitedNames);
 
         System.out.println(employees.stream()
                 .map(Employee::getDepartment)
@@ -28,9 +28,9 @@ public class CollectorsDemonstrationMain2 {
 
         System.out.println(employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting())));
-
-        System.out.println(employees.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.mapping(Employee::getSkill, Collectors.joining("&")))));
+//
+//        System.out.println(employees.stream()
+//                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.mapping(Employee::getSkill, Collectors.joining("&")))));
 
 
 

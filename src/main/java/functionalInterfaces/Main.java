@@ -4,10 +4,7 @@ import beans.Department;
 import beans.Employee;
 
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -21,6 +18,8 @@ public class Main {
         Predicate <String> isLongWord = isEmpty.and(isLongerThan5);
         System.out.println(isLongWord.test("Minsk"));
         System.out.println(isLongWord.test("Vitebsk"));
+        BiPredicate<String,String> longer = (a,b) -> a.length() > b.length();
+        System.out.println("longer result - " + longer.test("Vitebsk", "Grodno"));
 
         //Functions accept one argument and produce a result
         Function <Integer, Integer> multiple5 = a -> (a * 5);

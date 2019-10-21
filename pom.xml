@@ -8,6 +8,10 @@
     <artifactId>Java Experiments</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <spring.version>5.0.6.RELEASE</spring.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -32,6 +36,32 @@
             <artifactId>testng</artifactId>
             <version>6.11</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- For JavaConfig -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
